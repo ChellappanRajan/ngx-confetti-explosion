@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   inject,
   numberAttribute,
 } from '@angular/core';
@@ -43,6 +45,7 @@ export class NgxConfettiExplosionComponent implements OnInit {
   @Input({ transform: numberAttribute }) stageHeight = 800;
   @Input({ transform: numberAttribute }) stageWidth = 1600;
   @Input() particleShape: ParticleShape = 'mix';
+  @Output() explosionDone = new EventEmitter();
 
   public particles!: Array<Particle>;
   constructor(){
@@ -56,6 +59,7 @@ export class NgxConfettiExplosionComponent implements OnInit {
     this.particles = this.createParticles(particleCount, colors);
     Promise.resolve(setTimeout(()=>{
       this.particles = [];
+      this.explosionDone.emit();
     },this.duration));
   }
 

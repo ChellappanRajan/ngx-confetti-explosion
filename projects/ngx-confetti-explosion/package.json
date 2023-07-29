@@ -1,6 +1,13 @@
 {
   "name": "ngx-confetti-explosion",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "author": "Chellappan",
+  "license": "MIT",
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/ChellappanRajan/ngx-confetti-explosion.git"
+	},
+  "homepage": "https://github.com/ChellappanRajan/ngx-confetti-explosion#readme",
   "peerDependencies": {
     "@angular/common": "^16.1.0",
     "@angular/core": "^16.1.0"

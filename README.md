@@ -49,9 +49,15 @@ Customizing behavior with options:
 | shouldDestroyAfterDone | Determines whether to destroy all confetti nodes after the `duration` period has passed.       | boolean                | true                      | `<ngx-confetti-explosion [shouldDestroyAfterDone]="false"></ngx-confetti-explosion>` |
 | style `(--x, --y)`  | Style props to shift the confetti particles on the x and y axes by the specified amount.      | CSS units (e.g., px, em, rem) | --x: 10px; --y: 10px;       | `<ngx-confetti-explosion style="--x: 10px; --y: 10px;"></ngx-confetti-explosion>` |
 
+### Events
+
+| Event Name         | Description                                                                      | Payload                  | Example |
+|--------------------|----------------------------------------------------------------------------------|--------------------------|---------|
+| explosionDone      | Emitted when the confetti animation is completed and all confetti nodes are destroyed. | `void`                   | `(explosionDone)="onExplosionDone($event)"` |
+
 ## Examples
 
-[Basic Example](https://svelte.dev/repl/your-repl-link-goes-here?version=your-svelte-version-goes-here)
+[Basic Example](https://stackblitz.com/edit/stackblitz-starters-tnb3sv?file=src%2Fmain.ts)
 
 
 ## Performance

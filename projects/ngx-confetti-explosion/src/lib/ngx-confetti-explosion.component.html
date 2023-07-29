@@ -1,0 +1,10 @@
+
+<div class="confetti-explosion-container" [style.--stage-height]="stageHeight + 'px'">
+  <div
+    class="particle"
+    *ngFor="let particle of particles;"
+    [style]="particle"
+  >
+    <div></div>
+  </div>
+</div>

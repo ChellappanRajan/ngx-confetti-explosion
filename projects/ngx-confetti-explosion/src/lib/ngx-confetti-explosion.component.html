@@ -1,10 +1,11 @@
 
 <div class="confetti-explosion-container" [style.--stage-height]="stageHeight + 'px'">
+  @for (particle of particles; track particle['--x1']) {
   <div
     class="particle"
-    *ngFor="let particle of particles;"
     [style]="particle"
   >
     <div></div>
   </div>
+}
 </div>

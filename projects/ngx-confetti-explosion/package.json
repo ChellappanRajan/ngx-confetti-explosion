@@ -1,6 +1,6 @@
 {
   "name": "ngx-confetti-explosion",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Chellappan",
   "license": "MIT",
   "repository": {
@@ -9,8 +9,8 @@
 	},
   "homepage": "https://github.com/ChellappanRajan/ngx-confetti-explosion#readme",
   "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0"
+    "@angular/common": "^17",
+    "@angular/core": "^17"
   },
   "dependencies": {
     "tslib": "^2.3.0"

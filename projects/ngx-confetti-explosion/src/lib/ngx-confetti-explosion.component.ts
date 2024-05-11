@@ -32,7 +32,8 @@ import {
 
 @Component({
   selector: 'ngx-confetti-explosion',
-  templateUrl: './ngx-confetti-explosion.component.html',
+  template: NgxConfettiExplosionComponent.render(),
+  standalone:true,
   styleUrls: ['./ngx-confetti-explosion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -145,5 +146,20 @@ export class NgxConfettiExplosionComponent implements OnInit {
     };
 
     return styleMap;
+  }
+
+  static render():string{
+    return `
+    <div class="confetti-explosion-container" [style.--stage-height]="stageHeight + 'px'">
+      @for (particle of particles; track particle['--x1']) {
+      <div
+        class="particle"
+        [style]="particle"
+      >
+        <div></div>
+      </div>
+    }
+    </div>
+    `
   }
 }

@@ -35,6 +35,100 @@
           }
         }
       }
+    },
+    "ngx-confetti": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/ngx-confetti",
+      "sourceRoot": "projects/ngx-confetti/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/ngx-confetti",
+            "index": "projects/ngx-confetti/src/index.html",
+            "browser": "projects/ngx-confetti/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/ngx-confetti/tsconfig.app.json",
+            "inlineStyleLanguage": "sass",
+            "assets": [
+              "projects/ngx-confetti/src/favicon.ico",
+              "projects/ngx-confetti/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-confetti/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ngx-confetti:build:production"
+            },
+            "development": {
+              "buildTarget": "ngx-confetti:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "ngx-confetti:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/ngx-confetti/tsconfig.spec.json",
+            "inlineStyleLanguage": "sass",
+            "assets": [
+              "projects/ngx-confetti/src/favicon.ico",
+              "projects/ngx-confetti/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-confetti/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   }
 }

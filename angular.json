@@ -40,7 +40,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "root": "projects/ngx-confetti",
@@ -57,13 +57,13 @@
               "zone.js"
             ],
             "tsConfig": "projects/ngx-confetti/tsconfig.app.json",
-            "inlineStyleLanguage": "sass",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-confetti/src/favicon.ico",
               "projects/ngx-confetti/src/assets"
             ],
             "styles": [
-              "projects/ngx-confetti/src/styles.sass"
+              "projects/ngx-confetti/src/styles.scss"
             ],
             "scripts": []
           },
@@ -117,13 +117,13 @@
               "zone.js/testing"
             ],
             "tsConfig": "projects/ngx-confetti/tsconfig.spec.json",
-            "inlineStyleLanguage": "sass",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-confetti/src/favicon.ico",
               "projects/ngx-confetti/src/assets"
             ],
             "styles": [
-              "projects/ngx-confetti/src/styles.sass"
+              "projects/ngx-confetti/src/styles.scss"
             ],
             "scripts": []
           }

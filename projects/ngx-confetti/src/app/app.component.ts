@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgxConfettiExplosionComponent } from 'ngx-confetti-explosion';
+import { NgxConfettiExplosionComponent } from 'projects/ngx-confetti-explosion/src/public-api';
+// import { NgxConfettiExplosionComponent } from 'ngx-confetti-explosion';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,12 @@ import { NgxConfettiExplosionComponent } from 'ngx-confetti-explosion';
 export class AppComponent {
   title = 'ngx-confetti';
   show = false;
+  
   onShow(){
-    this.show = true;
+    this.show  = false;  
+    setTimeout(()=>{
+      this.show = true;
+    });
   }
-  onExplosionDone(){
-    this.show = false;
-  }
+ 
 }

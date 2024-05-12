@@ -46,7 +46,6 @@ Customizing behavior with options:
 | force               | Force of the confetti particles. Should be a value between 0 and 1.                            | number                 | 0.5                       | `<ngx-confetti-explosion [force]="0.3"></ngx-confetti-explosion>`            |
 | stageHeight         | Height of the confetti animation stage in pixels. Confetti will only fall within this height.  | number                 | 800                       | `<ngx-confetti-explosion [stageHeight]="500"></ngx-confetti-explosion>`      |
 | stageWidth          | Width of the confetti animation stage in pixels. Confetti will only fall within this width.    | number                 | 1600                      | `<ngx-confetti-explosion [stageWidth]="500"></ngx-confetti-explosion>`       |
-| shouldDestroyAfterDone | Determines whether to destroy all confetti nodes after the `duration` period has passed.       | boolean                | true                      | `<ngx-confetti-explosion [shouldDestroyAfterDone]="false"></ngx-confetti-explosion>` |
 | style `(--x, --y)`  | Style props to shift the confetti particles on the x and y axes by the specified amount.      | CSS units (e.g., px, em, rem) | --x: 10px; --y: 10px;       | `<ngx-confetti-explosion style="--x: 10px; --y: 10px;"></ngx-confetti-explosion>` |
 
 ### Events

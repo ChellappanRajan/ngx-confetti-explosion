@@ -42,26 +42,20 @@
       position: absolute;
       top: 0;
       left: 0;
-  
       animation: y-axis var(--duration-chaos) forwards
           cubic-bezier(var(--y1), var(--y2), var(--y3), var(--y4));
       animation-name: y-axis;
-  
       width: var(--width);
       height: var(--height);
   }
   
   .particle > div::before {
       display: block;
-  
       height: 100%;
       width: 100%;
-  
       content: '';
-      background-color: var(--bgcolor);
-  
+      background-color: var(--bg-color);
       animation: rotation var(--rotation-duration) infinite linear;
       animation-name: rotation;
-  
       border-radius: var(--border-radius);
   }

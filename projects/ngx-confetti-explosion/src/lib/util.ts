@@ -1,9 +1,7 @@
 export type ParticleShape = 'mix' | 'circles' | 'rectangles';
 export const DEFAULT_COLORS = ['#FFC700', '#FF0000', '#2E3191', '#41BBC7'];
 export type Particle = {
-  '--bgcolor': string;
-  rotationTransform: number;
-  isCircle: boolean;
+  '--bg-color': string;
   '--x-landing-point': string;
   '--duration-chaos': string;
   '--x1': number;

@@ -1,33 +1,34 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  DestroyRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   inject,
-  numberAttribute,
+  numberAttribute
 } from '@angular/core';
 import {
-  random,
-  max,
-  POSSIBLE_ROTATION_TRANSFORMS,
-  CRAZY_PARTICLES_FREQUENCY,
-  round,
-  CRAZY_PARTICLE_CRAZINESS,
-  shouldBeCircle,
-  mathRound,
-  mapRange,
-  abs,
-  rotate,
   BEZIER_MEDIAN,
-  coinFlip,
-  ROTATION_SPEED_MAX,
-  ROTATION_SPEED_MIN,
+  CRAZY_PARTICLES_FREQUENCY,
+  CRAZY_PARTICLE_CRAZINESS,
   DEFAULT_COLORS,
+  POSSIBLE_ROTATION_TRANSFORMS,
   Particle,
   ParticleShape,
+  ROTATION_SPEED_MAX,
+  ROTATION_SPEED_MIN,
+  abs,
+  coinFlip,
+  mapRange,
+  mathRound,
+  max,
+  random,
+  rotate,
+  round,
+  shouldBeCircle,
 } from './util';
 
 @Component({
@@ -37,7 +38,7 @@ import {
   styleUrls: ['./ngx-confetti-explosion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxConfettiExplosionComponent implements OnInit {
+export class NgxConfettiExplosionComponent implements OnInit,OnDestroy {
   @Input() colors: string[] = DEFAULT_COLORS;
   @Input({ transform: numberAttribute }) force = 0.5;
   @Input({ transform: numberAttribute }) duration = 3500;
@@ -47,27 +48,37 @@ export class NgxConfettiExplosionComponent implements OnInit {
   @Input({ transform: numberAttribute }) stageWidth = 1600;
   @Input() particleShape: ParticleShape = 'mix';
   @Output() explosionDone = new EventEmitter();
-
+ 
   public particles!: Array<Particle>;
-  constructor(){
-    inject(DestroyRef).onDestroy(() => {
-      this.particles = [];
-    })
-  }
+  #timer!: ReturnType<typeof setTimeout> | null;
+  cdr = inject(ChangeDetectorRef);
+  
 
   ngOnInit(): void {
     const { particleCount, colors } = this;
     this.particles = this.createParticles(particleCount, colors);
-    Promise.resolve(setTimeout(()=>{
+    this.#clearTimerIfExist();
+    this.#timer = setTimeout(()=>{
       this.particles = [];
+      this.cdr.markForCheck();
       this.explosionDone.emit();
-    },this.duration));
+    },this.duration);
   }
 
+  #clearTimerIfExist():void{
+    if(this.#timer){
+      clearTimeout(this.#timer);
+    }
+  }
+  
+  ngOnDestroy(): void {
+    this.#clearTimerIfExist();
+    this.particles = [];
+  }
+  
+
   private createParticles(count: number, colors: string[]) :Array<Particle>{
-    return Array.from({ length: count }, (_, i) =>
-      this.createConfettiStyles((i * 360) / count, colors[i % colors.length])
-    );
+    return Array.from({ length: count }, (_, i) =>this.createConfettiStyles((i * 360) / count, colors[i % colors.length]));
   }
 
   private createConfettiStyles(degree: number, color: string): Particle{
@@ -97,11 +108,7 @@ export class NgxConfettiExplosionComponent implements OnInit {
       isParticleShapeCircles || shouldBeCircle(rotationTransform);
 
     const styleMap = {
-      '--bgcolor': color,
-      rotationTransform: mathRound(
-        random() * (POSSIBLE_ROTATION_TRANSFORMS - 1)
-      ),
-      isCircle:isCircle,
+      '--bg-color': color,
       '--x-landing-point':
         mapRange(
           abs(rotate(degree, 90) - 180),
@@ -144,14 +151,13 @@ export class NgxConfettiExplosionComponent implements OnInit {
         ) + 'ms',
       '--border-radius': isCircle ? '50%' : 0,
     };
-
     return styleMap;
   }
 
   static render():string{
     return `
     <div class="confetti-explosion-container" [style.--stage-height]="stageHeight + 'px'">
-      @for (particle of particles; track particle['--x1']) {
+      @for (particle of particles; track particle) {
       <div
         class="particle"
         [style]="particle"

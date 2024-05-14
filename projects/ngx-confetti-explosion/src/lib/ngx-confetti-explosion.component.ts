@@ -28,7 +28,7 @@ import {
   random,
   rotate,
   round,
-  shouldBeCircle,
+  shouldBeCircle, CssUnit
 } from './util';
 
 @Component({
@@ -45,7 +45,9 @@ export class NgxConfettiExplosionComponent implements OnInit,OnDestroy {
   @Input({ transform: numberAttribute }) particleCount = 150;
   @Input({ transform: numberAttribute }) particleSize = 12;
   @Input({ transform: numberAttribute }) stageHeight = 800;
+  @Input() stageHeightUnit: CssUnit = 'px';
   @Input({ transform: numberAttribute }) stageWidth = 1600;
+  @Input() stageWidthUnit: CssUnit = 'px';
   @Input() particleShape: ParticleShape = 'mix';
   @Output() explosionDone = new EventEmitter();
  
@@ -93,6 +95,7 @@ export class NgxConfettiExplosionComponent implements OnInit,OnDestroy {
       particleShape = 'mix',
       particleSize = 12,
       stageWidth = 1600,
+      stageWidthUnit = 'px',
     } = this;
 
     const rotation = rotationTransform.toString(2).padStart(3, '0').split('');
@@ -116,7 +119,7 @@ export class NgxConfettiExplosionComponent implements OnInit,OnDestroy {
           180,
           -stageWidth / 2,
           stageWidth / 2
-        ) + 'px',
+        ) + stageWidthUnit,
       '--duration-chaos': duration - mathRound(random() * 1e3) + 'ms',
       '--x1': x1,
       '--x2': x1 * -1,
@@ -156,7 +159,7 @@ export class NgxConfettiExplosionComponent implements OnInit,OnDestroy {
 
   static render():string{
     return `
-    <div class="confetti-explosion-container" [style.--stage-height]="stageHeight + 'px'">
+    <div class="confetti-explosion-container" [style.--stage-height]="stageHeight + stageHeightUnit">
       @for (particle of particles; track particle) {
       <div
         class="particle"

@@ -1,4 +1,7 @@
 export type ParticleShape = 'mix' | 'circles' | 'rectangles';
+type CssAbsoluteUnit = "cm" | "mm" | "in" | "px" | "pt" | "pc";
+type CssRelativeUnit = "em" | "ex" | "ch" | "rem" | "vw" | "vh" | "vmin" | "vmax" | "%";
+export type CssUnit = CssAbsoluteUnit | CssRelativeUnit;
 export const DEFAULT_COLORS = ['#FFC700', '#FF0000', '#2E3191', '#41BBC7'];
 export type Particle = {
   '--bg-color': string;
